@@ -620,33 +620,44 @@ If $I_\nu$ is isotropic, then $J_\nu = I_\nu$.
 
 \subsubsection{The Photon Density}
 
-The monochromatic density $N_\nu$ of photons per unit
-frequency is given by
+The monochromatic volume density $N_\nu$ of photons per unit
+frequency can be obtained most simply from the photon distribution function. Since the photon distribution function distribution function is the phase-space density of photons, the volume density of photons $N_\nu$ with can be
+obtained by integrating over all momenta corresponding to the interval $(\nu,\nu+d\nu)$. This corresponds to the volume in momentum space is the shell between $p = h\nu/c$ and $p + dp = h\nu/c + hd\nu/c$. Thus, 
 \begin{align}
-N_\nu = \frac{4\pi J_\nu}{h\nu c}.
+N_\nu d\nu &= \int f(\vec r, \vec p) d\vec p\\
+&= \int_{4\pi}\!\!\!d\Omega\: f(\vec r, \vec p) p^2 dp\\
+&= \frac{h^3\nu^2}{c^3} \int_{4\pi}\!\!\!d\Omega\:f(\vec r, \vec p) d\nu
 \end{align}
-and the total photon density $N$ is given by
+Now, dropping $d\nu$ on both sides, using $I_\nu = h^4\nu^3 f / c^2$, and using the definition of $J_\nu$, we find
 \begin{align}
-N = \frac{4\pi}{hc} \int_0^\infty\!\!\!d\nu\: \frac{J_\nu}{\nu}.
+N_\nu &=  \frac{1}{h\nu c} \int_{4\pi}\!\!\!d\Omega\:f(\vec r, \vec p)\\
+&=  \frac{4\pi}{hc\nu} J_\nu.
 \end{align}
-These expressions are derived in Problem
-\ref{problem-photon-density}. 
+
+The total photon density $N$ can be obtained by simply integrating over all frequencies, 
+\begin{align}
+N &= \int_0^\infty\!\!\!d\nu\: N_\nu\\
+&= \frac{4\pi}{hc} \int_0^\infty\!\!\!d\nu\: \frac{J_\nu}{\nu}.
+\end{align}
 
 \newslide
 
 \subsubsection{The Energy Density}
 
-The monochromatic energy density $u_\nu$ per unit frequency
-is given by
+The monochromatic energy density $u_\nu$ per unit frequency can be obtained by simply multiplying the volume density of photons per unit frequency $N_\nu$ by the energy per photon $h\nu$, as follows
 \begin{align}
-u_\nu = \frac{4\pi J_\nu}{c}.
+u_\nu &= h\nu N_\nu\\
+&= \frac{4\pi h\nu}{hc\nu} J_\nu\\
+&= J_\nu.
 \end{align}
-and the total energy density $E$ is given by
+
+The total energy density $u$ can be obtained by
+  integrating $u_\nu$ over all frequencies as
 \begin{align}
-u = \frac{4\pi J}{c}.
+u &= \int_0^\infty\!\!\!dp^3\:u_\nu\\
+&= \frac{4\pi}{c}  \int_0^\infty\!\!\!dp^3\: J_\nu\\
+&= \frac{4\pi J}{c}.
 \end{align}
-These expressions are derived in Problem
-\ref{problem-energy-density}. 
 
 \newslide
 
@@ -762,9 +773,11 @@ I_\nu(1)&\mbox{for $\mu>0$,}\\
 and the flux is given by 
 \begin{align}
 \label{eq-flux-from-surface}
-F_\nu = \pi I_\nu(1).
+F_\nu &= 2\pi\int_{-1}^{+1}\!\!\!d\mu\:\mu I_\nu(\mu),\\
+      &= 2\pi I_\nu(1)\int_{0}^{+1}\!\!\!d\mu\:\mu,\\
+      &= \pi I_\nu(1).
 \end{align}
-This expression is derived in Problem \ref{problem-flux-from-surface}.
+
 This expression for the flux leads to the use of the quantity
 $F_\nu/\pi$, which is called the ``astrophysical flux'' in contrast to
 the ``physical flux'' $F_\nu$. The astrophysical flux would be of
@@ -1221,7 +1234,7 @@ Pan-STARRS1
 \end{tabular}
 \end{table}
 
-We measure the magnitude of a star by measuring the flux
+We measure the magnitude of a star by measuring the signal
 after passing its spectrum through a filter. Until recently, the most common
 filters were the Johnson-Cousins filters; $UBV$ were
 Johnson's original filters; the rest were added later. These
@@ -1236,16 +1249,23 @@ Geneva, DDO, Vilnius, Thuan-Gunn, Hipparcos, Tycho, and Gaia systems.
 
 \newslide
 
-The apparent magnitude $m_X$ in a band $X$ is defined as
+Nowadays we derive magnitudes in a band $X$ from the count rates measured by photon-counting devices with a filter in the optical path. Thus, the signal we measure is 
+\begin{align}
+s_X &= A \int\!d\lambda\: F_\lambda S_X / (hc/\lambda)\\
+&= \frac{A}{hc} \int\!d\lambda\: \lambda F_\lambda S_X,
+\end{align}
+in which $A$ is the area of the telescope, $F_\lambda$ is the flux of the source above the atmosphere, $S_X$ is the system efficiency in the band (the probability that a photon of wavelength $\lambda$ will be passed by the atmosphere, telescope, and filter and be detected by the detector), and the factor of $hc/\lambda$ converts from energy to photons.
+From this, we see that we can define the a mean flux in the filter as 
+\begin{align}
+F_X &= \frac{\int\!d\lambda\:\lambda S F_\lambda}{\int\!d\lambda\:\lambda S},
+\end{align}
+We can see that the mean flux is simply the signal multiplied by a constant for the band.
+The apparent magnitude $m_X$ in a band $X$ is then defined as
 \begin{align}
 m_X = -2.5 \log_{10} F_X + C_X
 \end{align}
 where $F_X$ is the mean flux in the band and $C_X$ is a constant. 
-The mean flux is given by
-\begin{align}
-F_X = \frac{\int\!d\lambda\:\lambda S F_\lambda}{\int\!d\lambda\:\lambda S},
-\end{align}
-in which $S$ is the response of the system: the relative probability that a photon of wavelength $\lambda$ will be detected by the system (atmosphere, telescope, filter, and detector). The additional factors of $\lambda$ are let over from multiplying by $\lambda/hc$ to convert $F_\lambda$ from energy per unit wavelength to number of photons per unit wavelength. We often make the crude assumption that $S$ is a $\delta$-function at $\lambda_X$, and so
+We often make the crude assumption that $S$ is a $\delta$-function at $\lambda_X$, and so
 \begin{align}
 F_X \approx F_\lambda(\lambda_X).
 \end{align}
