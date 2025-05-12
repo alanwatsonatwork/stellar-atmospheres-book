@@ -2,8 +2,14 @@
 
 %: style: font
 
-\usepackage{newtxtext}
-\usepackage{newtxmath}
+
+\usepackage{unicode-math}
+\setmainfont[
+	BoldFont = texgyreschola-bold.otf,
+	BoldItalicFont = texgyreschola-bolditalic.otf,
+	ItalicFont = texgyreschola-italic.otf
+]{texgyreschola-regular.otf}
+\setmathfont{texgyreschola-math.otf}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -87,7 +93,7 @@
 
 % We cannot use \AA or Å in math mode (as it provokes the LaTeX warning "Command \r 
 % invalid in math mode"), therefore we switch to LR mode.
-\renewcommand{\Angstrom}{\mbox{Å}}
+\newcommand{\Angstrom}{\mbox{Å}}
 
 \newcommand{\micron}{\mbox{$\mu$m}}
 \newcommand{\ion}[2]{\mbox{#1$\:${\small#2}}}
