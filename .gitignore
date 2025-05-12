@@ -6,3 +6,6 @@
 book.synctex.gz
 *.toc
 book.pdf
+book.blg
+book.bbl
+book.blg
